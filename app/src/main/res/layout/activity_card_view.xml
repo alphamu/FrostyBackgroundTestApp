@@ -37,16 +37,16 @@
                     android:shadowDx="-2"
                     android:shadowDy="-2"
                     android:shadowRadius="1"
-                    android:text="My Baking"
+                    android:text="My Baking (Scroll Up)"
                     android:textColor="#FFFFFF"
                     android:textSize="30sp"
                     android:textStyle="bold"/>
 
                 <android.support.v4.widget.Space
                     android:id="@+id/spacer"
-                    android:layout_below="@+id/title"
                     android:layout_width="match_parent"
-                    android:layout_height="1000dp"/>
+                    android:layout_height="400dp"
+                    android:layout_below="@+id/title"/>
 
                 <LinearLayout
                     android:id="@+id/cardview"
@@ -54,6 +54,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/spacer"
                     android:layout_margin="32dp"
+                    android:background="@drawable/white_background"
                     android:orientation="vertical"
                     android:padding="16dp">
 
@@ -80,6 +81,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/cardview"
                     android:layout_margin="32dp"
+                    android:background="@drawable/white_background"
                     android:orientation="vertical"
                     android:padding="16dp">
 
@@ -101,6 +103,7 @@
                 </LinearLayout>
 
                 <android.support.v4.widget.Space
+                    android:layout_below="@+id/cardview2"
                     android:layout_width="match_parent"
                     android:layout_height="1000dp"/>
             </RelativeLayout>

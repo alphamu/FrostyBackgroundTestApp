@@ -1,5 +1,6 @@
 package com.alimuzaffar.demo.frosty;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.ColorFilter;
@@ -20,11 +21,15 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 
+import static com.alimuzaffar.demo.frosty.R.id.fab;
+
 public class ScrollingActivity extends AppCompatActivity {
     private RenderScript rs = null;
+
     ImageView imgBgBlur;
     View imgBg;
     Bitmap mBlurBitmap;
+    FloatingActionButton mFab;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,14 +39,14 @@ public class ScrollingActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        mFab = (FloatingActionButton) findViewById(fab);
         imgBgBlur = (ImageView) findViewById(R.id.imgBgBlur);
         imgBg = findViewById(R.id.container);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
+        mFab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                imgBgBlur.setTop(imgBgBlur.getTop() - 10);
+                startActivity(new Intent(ScrollingActivity.this, CardViewActivity.class));
             }
         });
 
