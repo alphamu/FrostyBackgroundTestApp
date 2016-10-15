@@ -74,6 +74,7 @@ public class CardViewActivity extends AppCompatActivity {
     if (bitmap != null) {
       d = RoundedBitmapDrawableFactory.create(getResources(), bitmap);
       ((RoundedBitmapDrawable) d).setCornerRadius(getResources().getDimensionPixelOffset(R.dimen.rounded_corner));
+
     } else {
       d = ContextCompat.getDrawable(CardViewActivity.this, R.drawable.white_background);
     }
