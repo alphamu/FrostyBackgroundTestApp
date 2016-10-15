@@ -7,8 +7,8 @@ You can find a write up and explanation on my Medium account "Android Devs, make
 
 ### Toolbar
 
-<img src="//giphy.com/embed/5lcu8Ob0XQ0hi" width="202" height="360" />
+<img src="http://i.giphy.com/5lcu8Ob0XQ0hi.gif" width="202" height="360" />
 
 ### View background
 
-<img src="//giphy.com/embed/q2rYFvwRf4rZu" width="202" height="360" />
+<img src="http://i.giphy.com/q2rYFvwRf4rZu.gif" width="202" height="360" />
