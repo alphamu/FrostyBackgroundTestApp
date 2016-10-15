@@ -41,9 +41,9 @@ public class CardViewActivity extends AppCompatActivity {
                                        int right, int bottom,
                                        int oldLeft, int oldTop,
                                        int oldRight, int oldBottom) {
-                mBitmap1 = loadBitmap(mBinding.imgBg, mBinding.cardview, 0);
+                mBitmap1 = loadBitmap(mBinding.imgBg, mBinding.cardview);
                 mBinding.cardview.setBackground(new BitmapDrawable(getResources(), mBitmap1));
-                mBitmap2 = loadBitmap(mBinding.imgBg, mBinding.cardview2, 0);
+                mBitmap2 = loadBitmap(mBinding.imgBg, mBinding.cardview2);
                 mBinding.cardview2.setBackground(new BitmapDrawable(getResources(), mBitmap2));
             }
         });
@@ -58,16 +58,16 @@ public class CardViewActivity extends AppCompatActivity {
                 if (mBitmap2 != null) {
                     mBitmap2.recycle();
                 }
-                mBitmap1 = loadBitmap(mBinding.imgBg, mBinding.cardview, scrollY);
+                mBitmap1 = loadBitmap(mBinding.imgBg, mBinding.cardview);
                 mBinding.cardview.setBackground(new BitmapDrawable(getResources(), mBitmap1));
-                mBitmap2 = loadBitmap(mBinding.imgBg, mBinding.cardview2, scrollY);
+                mBitmap2 = loadBitmap(mBinding.imgBg, mBinding.cardview2);
                 mBinding.cardview2.setBackground(new BitmapDrawable(getResources(), mBitmap2));
             }
         });
         rs = RenderScript.create(this);
     }
 
-    private Bitmap loadBitmap(View backgroundView, View targetView, int scrollY) {
+    private Bitmap loadBitmap(View backgroundView, View targetView) {
         Rect backgroundBounds = new Rect();
         backgroundView.getHitRect(backgroundBounds);
         if (targetView.getLocalVisibleRect(backgroundBounds)) {
