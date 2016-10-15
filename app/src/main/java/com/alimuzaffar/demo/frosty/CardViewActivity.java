@@ -10,9 +10,11 @@ import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
-import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v8.renderscript.RenderScript;
 import android.util.Log;
@@ -68,10 +70,14 @@ public class CardViewActivity extends AppCompatActivity {
   }
 
   private void setBackgroundOnView(View view, Bitmap bitmap) {
-    view.setBackground(
-        bitmap == null
-            ? ContextCompat.getDrawable(CardViewActivity.this, R.drawable.white_background)
-            : new BitmapDrawable(getResources(), bitmap));
+    Drawable d;
+    if (bitmap != null) {
+      d = RoundedBitmapDrawableFactory.create(getResources(), bitmap);
+      ((RoundedBitmapDrawable) d).setCornerRadius(getResources().getDimensionPixelOffset(R.dimen.rounded_corner));
+    } else {
+      d = ContextCompat.getDrawable(CardViewActivity.this, R.drawable.white_background);
+    }
+    view.setBackground(d);
   }
 
   private Bitmap loadBitmap(View backgroundView, View targetView) {
@@ -81,15 +87,8 @@ public class CardViewActivity extends AppCompatActivity {
       // NONE of the imageView is within the visible window
       return null;
     }
-        /*else {
-            // Some of it is visible
-        }*/
+
     Bitmap blurredBitmap = captureView(backgroundView);
-    Matrix matrix = new Matrix();
-    //half the size of the cropped bitmap
-    //to increase performance, it will also
-    //increase the blur effect.
-    matrix.setScale(0.5f, 0.5f);
     //capture only the area covered by our target view
     int[] loc = new int[2];
     int[] bgLoc = new int[2];
@@ -111,6 +110,11 @@ public class CardViewActivity extends AppCompatActivity {
         return null;
       }
     }
+    Matrix matrix = new Matrix();
+    //half the size of the cropped bitmap
+    //to increase performance, it will also
+    //increase the blur effect.
+    matrix.setScale(0.5f, 0.5f);
     Bitmap bitmap = Bitmap.createBitmap(blurredBitmap,
         (int) targetView.getX(),
         y,
@@ -119,6 +123,8 @@ public class CardViewActivity extends AppCompatActivity {
         matrix,
         true);
 
+    return bitmap;
+    //If handling rounded corners yourself.
     //Create rounded corners on the Bitmap
     //keep in mind that our bitmap is half
     //the size of the original view, setting
@@ -126,10 +132,10 @@ public class CardViewActivity extends AppCompatActivity {
     //so you will need to use a smaller value
     //for the rounded corners than you would normally
     //to achieve the correct look.
-    return ImageHelper.roundCorners(
-        bitmap,
-        getResources().getDimensionPixelOffset(R.dimen.rounded_corner),
-        false);
+    //ImageHelper.roundCorners(
+    //bitmap,
+    //getResources().getDimensionPixelOffset(R.dimen.rounded_corner),
+    //false);
   }
 
   public Bitmap captureView(View view) {
