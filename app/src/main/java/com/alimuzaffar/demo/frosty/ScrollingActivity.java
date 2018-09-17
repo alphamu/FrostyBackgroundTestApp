@@ -20,6 +20,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import static com.alimuzaffar.demo.frosty.R.id.fab;
 
@@ -30,18 +31,27 @@ public class ScrollingActivity extends AppCompatActivity {
     View imgBg;
     Bitmap mBlurBitmap;
     FloatingActionButton mFab;
+    TextView txtLong;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scrolling);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        mFab = (FloatingActionButton) findViewById(fab);
-        imgBgBlur = (ImageView) findViewById(R.id.imgBgBlur);
+        mFab = findViewById(fab);
+        imgBgBlur = findViewById(R.id.imgBgBlur);
         imgBg = findViewById(R.id.container);
+        txtLong = findViewById(R.id.txtLong);
+
+        txtLong.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(ScrollingActivity.this, CardViewActivity.class));
+            }
+        });
 
         mFab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,8 +61,8 @@ public class ScrollingActivity extends AppCompatActivity {
         });
 
         final NestedScrollView nestedScrollView =
-                (NestedScrollView) findViewById(R.id.nestedScrollView);
-        final AppBarLayout appBarLayout = (AppBarLayout) findViewById(R.id.app_bar);
+                findViewById(R.id.nestedScrollView);
+        final AppBarLayout appBarLayout = findViewById(R.id.app_bar);
         appBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
             @Override
             public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {

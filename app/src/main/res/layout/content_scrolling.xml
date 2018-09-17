@@ -24,6 +24,7 @@
                     android:src="@drawable/background" />
 
                 <TextView
+                    android:id="@+id/txtLong"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/text_margin"
